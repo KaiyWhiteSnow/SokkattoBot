@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="space">
+    <div class="card">
+        <div class="map">{{ safe_html_code }}</div>
+        <div class="text">
+            <p>
+                Server: {{ name }}
+            </p>
+            <p>
+                Population: {{ players }}/{{ maxPlayers }}
+            </p>
+            <p>
+                Map size: {{ size }}
+            </p>
+            <p>
+                Time: {{ time }}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

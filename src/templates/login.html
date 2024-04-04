@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <header class="form-header">
+        <i class="fa-solid fa-key"></i>
+        <h2>Sign in</h2>
+    </header>
+    <form method="post" class="skt-form">
+        <label for="username">Username:</label>
+        <input class="skt-input" type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input class="skt-input" type="password" id="password" name="password" required>
+        <input class="skt-button skt-button--primary" type="submit" value="Sign in">
+    </form>
+{% endblock %}
