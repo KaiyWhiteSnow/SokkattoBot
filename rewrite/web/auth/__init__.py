@@ -1,10 +1,8 @@
 from flask import Blueprint, request, jsonify, render_template, redirect, url_for, session
-from Database.Database import Session, func
+from ...database import session as db
 from ...database.models.user_model import User
 
 auth = Blueprint("authorization", __name__, url_prefix='/authorization')
-
-session_instance = Session()
 
 @auth.after_request
 def add_header(response):
@@ -25,7 +23,7 @@ async def register():
         confirm_password = request.form['confirm_password']
 
         # Check if username is already in the database
-        existing_user = session_instance.query(User).filter_by(username=username).first()
+        existing_user = session.query(User).filter_by(username=username).first()
 
         if existing_user:
             return render_template('register.html', message='Username already exists. Choose a different one.')
@@ -36,8 +34,8 @@ async def register():
 
         # Add user to the database
         new_user = User(username=username, password=password)
-        session_instance.add(new_user)
-        session_instance.commit()
+        db.add(new_user)
+        db.commit()
 
         return redirect(url_for('user.login'))
 
@@ -50,7 +48,7 @@ def login():
         password = request.form['password']
 
         # Check if username exists in the database
-        user = session_instance.query(User).filter_by(username=username).first()
+        user = db.query(User).filter_by(username=username).first()
 
         if user and password:
             # Authentication successful, set session variable
