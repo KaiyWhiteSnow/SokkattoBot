@@ -1,9 +1,9 @@
 from flask import render_template, Blueprint, request, redirect, url_for
-from Database.Database import Session
+from ...database import Session
 from ...database.models.bot_model import Bot
 from ...database.models.user_model import User
 from ...bot.bot_factory import BotFunctions
-from User import session
+from ..auth import session
 
 manager = Blueprint("manager", __name__, url_prefix="/manager")
 session_instance = Session()
