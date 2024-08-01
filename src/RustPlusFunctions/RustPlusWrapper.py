@@ -54,7 +54,7 @@ async def serverInfo(IP: str, port: str, SteamID: int, PlayerToken: int):
     image_buffer = BytesIO()
     map.save(image_buffer, format='PNG')
     image_data = base64.b64encode(image_buffer.getvalue()).decode('utf-8')
-    html_code = f'<img src="data:image/png;base64,{image_data}" class="img-small">'
+    html_code = f'<img src="data:image/png;base64,{image_data}" width="500" height="500">'
 
     safe_html_code = Markup(html_code)
     name = rustInfo.name
