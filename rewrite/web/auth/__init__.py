@@ -25,7 +25,7 @@ async def register():
         confirm_password = request.form['confirm_password']
 
         # Check if username is already in the database
-        existing_user = session_instance.query(User).filter_by(Username=username).first()
+        existing_user = session_instance.query(User).filter_by(username=username).first()
 
         if existing_user:
             return render_template('register.html', message='Username already exists. Choose a different one.')
@@ -35,7 +35,7 @@ async def register():
             return render_template('register.html', message='Passwords do not match. Please try again.')
 
         # Add user to the database
-        new_user = User(Username=username, Password=password)
+        new_user = User(username=username, password=password)
         session_instance.add(new_user)
         session_instance.commit()
 
@@ -50,7 +50,7 @@ def login():
         password = request.form['password']
 
         # Check if username exists in the database
-        user = session_instance.query(User).filter_by(Username=username).first()
+        user = session_instance.query(User).filter_by(username=username).first()
 
         if user and password:
             # Authentication successful, set session variable
@@ -65,4 +65,4 @@ def login():
 def logout():
     # Remove the username from the session if it's present
     session.pop('username', None)
-    return redirect(url_for(User.login), message="You were logged out" )
+    return redirect(url_for("auth.login"), message="You were logged out")
