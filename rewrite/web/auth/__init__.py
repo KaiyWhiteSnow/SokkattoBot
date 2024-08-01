@@ -23,7 +23,7 @@ async def register():
         confirm_password = request.form['confirm_password']
 
         # Check if username is already in the database
-        existing_user = session.query(User).filter_by(username=username).first()
+        existing_user = db.query(User).filter_by(username=username).first()
 
         if existing_user:
             return render_template('register.html', message='Username already exists. Choose a different one.')
@@ -37,7 +37,7 @@ async def register():
         db.add(new_user)
         db.commit()
 
-        return redirect(url_for('user.login'))
+        return redirect(url_for('authorization.login'))
 
     return render_template('register.html')
 
@@ -53,9 +53,8 @@ def login():
         if user and password:
             # Authentication successful, set session variable
             session['username'] = username
-            return redirect(url_for("rustplus.makeBot"))
-        else:
-            return "not logged in"
+            return redirect(url_for("manager.makebot"))
+        return "not logged in"
 
     return render_template('login.html')
 
