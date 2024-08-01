@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" class="skt-collection">
+    {% for bot_id in bot_ids %}
+    <div class="bot-item">
+        <span class="bot-item__text">
+            {{ bot_id.name }} 
+        </span>
+        <button class="skt-button" type="submit" name="BotID" value="{{ bot_id.bot_id }}">
+            Connect
+        </button>
+    </div>
+    {% endfor %}
+</form>
+{% endblock %}

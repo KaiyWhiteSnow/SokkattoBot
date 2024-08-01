@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="form-header">
+    <i class="fa-solid fa-robot"></i>
+    <h2>Make a bot</h2>
+</header>
+<form method="POST" class="skt-form">
+    <label for="name">Name</label>
+    <input class="skt-input" type="text" name="name">
+    <label for="token">Rust token</label>
+    <input class="skt-input" type="text" name="token">
+    <label for="steam_id">Steam ID</label>
+    <input class="skt-input" type="text" name="steam_id">
+    <label for="ip">IP Adress</label>
+    <input class="skt-input" type="text" name="ip">
+    <label for="port">Port</label>
+    <input class="skt-input" type="text" name="port">
+    <input class="skt-button skt-button--primary" type="submit" value="Commit change">
+</form>
+{% endblock %}

@@ -1,10 +1,11 @@
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.collections import InstrumentedList
-from sqlalchemy.orm.state import InstanceState
 from sqlalchemy.ext.declarative import declarative_base
 
+
+# This is important, do not delete
 from .models import user_model
+from .models import bot_model
 
 Base = declarative_base()
 

@@ -1,0 +1,71 @@
+.skt-button {
+  padding: 0.8rem 2.4rem;
+  background-color: #2a2a2a;
+  color: #fdfdfd;
+  border: 1px solid #4a4a4a;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.skt-button:hover {
+  background-color:#3a3a3a;
+}
+
+.skt-button--primary {
+  background-color: #1c5b63;
+  border: 1px solid #298f9c;
+}
+
+.skt-button--primary:hover {
+  background-color: #298f9c;
+}
+
+.skt-input {
+  color: #fdfdfd;
+  padding: 0.8rem;
+  width: 100%;
+  max-width: 24rem;
+  height: 4rem;
+  border: 1px solid #4a4a4a;
+  background-color: unset;
+  transition: border 0.2s;
+}
+
+.skt-input:hover,
+.skt-input:focus,
+.skt-input:active {
+  border: 1px solid #8a8a8a;
+}
+
+.skt-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.skt-form .skt-input {
+  max-width: unset;
+}
+
+.skt-form .skt-input[type="text"],
+.skt-form .skt-input[type="password"],
+.skt-form .skt-input[type="email"] {
+  margin-bottom: 1.2rem;
+}
+
+.skt-form input[type="submit"] {
+  margin-top: 2.4rem;
+}
+
+.skt-form label {
+  margin-bottom: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.skt-collection {
+  display: grid;
+  gap: 2.4rem;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
