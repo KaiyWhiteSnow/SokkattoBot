@@ -9,7 +9,7 @@ manager = Blueprint("manager", __name__, url_prefix="/manager")
 session_instance = Session()
 
 @manager.route("/makebot", methods=["POST", "GET"])
-async def makeBot():
+async def makebot():
     if request.method == "POST":
         name = request.form.get("name")
         ip = request.form.get("ip")
@@ -24,7 +24,7 @@ async def makeBot():
         
         if not check: 
             # Set the 'Id' attribute when creating a new Bots instance
-            commit = Bot(id=logged_in_user.user_id, name=name, ip=ip, port=port, steam_id=steam_id, token=token)
+            commit = Bot(bot_to_user_id=logged_in_user.user_id, name=name, ip=ip, port=port, steam_id=steam_id, token=token)
             session_instance.add(commit)
             session_instance.commit()
         return redirect(url_for("manager.index"))
@@ -33,9 +33,11 @@ async def makeBot():
 @manager.route("/", methods=["POST", "GET"])
 async def index():
     if request.method == "POST":
-        bot_id = request.form["bot_id"]
+        bot_id = request.form.get("bot_id")
         bot_creds = session_instance.query(Bot).filter(Bot.bot_id == bot_id).first()
-
+        
+        bot_functions = BotFunctions()  # Instantiate the BotFunctions class
+        
         (
             map, 
             name, 
@@ -43,7 +45,7 @@ async def index():
             max_players, 
             size, 
             time
-        ) = await BotFunctions.getGlobalInfo(
+        ) = await bot_functions.getGlobalInfo(
             bot_creds.ip, 
             bot_creds.port, 
             bot_creds.steam_id, 
@@ -62,6 +64,6 @@ async def index():
 
     logged_in_username = session.get("username")
     logged_in_user = session_instance.query(User).filter(User.username == logged_in_username).first()
-    bots = session_instance.query(Bot).filter_by(id=logged_in_user.user_id).all()
+    bots = session_instance.query(Bot).filter_by(bot_to_user_id=logged_in_user.user_id).all()
     
     return render_template("bots.html", bot_ids=bots)
