@@ -4,7 +4,8 @@
     {% for bot_id in bot_ids %}
     <div class="bot-item">
         <span class="bot-item__text">
-            {{ bot_id.name }} 
+            {{ bot_id.name }}<br>
+            {{ server_name }}
         </span>
         <button class="skt-button" type="submit" name="bot_id" value="{{ bot_id.bot_id }}">
             Connect

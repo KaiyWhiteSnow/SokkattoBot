@@ -10,11 +10,12 @@ logger: logging.Logger = logging.getLogger("Sokkatto.manager")
 
 manager = Blueprint("manager", __name__, url_prefix="/manager")
 session_instance = Session()
+bot_functions = BotFunctions()
 
 @manager.route("/makebot", methods=["POST", "GET"])
 async def makebot():
     if request.method == "POST":
-        logging.debug("Requesting information")
+        logger.debug("Requesting information")
         name = request.form.get("name")
         ip = request.form.get("ip")
         port = request.form.get("port")
@@ -22,7 +23,7 @@ async def makebot():
         token = request.form.get("token")
         
         if not name or not ip or not port or not steam_id or not token:
-            logging.debug("Missing information needed to connect!")
+            logger.debug("Missing information needed to connect!")
             return "Enter credentials!"
             
         logged_in_username = session.get("username")
@@ -31,11 +32,11 @@ async def makebot():
         check = session_instance.query(Bot).filter_by(token=token).first()
         
         if not check: 
-            logging.debug("Bot does not yet exist, creating new bot")
+            logger.debug("Bot does not yet exist, creating new bot")
             commit = Bot(bot_to_user_id=logged_in_user.user_id, name=name, ip=ip, port=port, steam_id=steam_id, token=token)
             session_instance.add(commit)
             session_instance.commit()
-            logging.debug("Bot saved to database under name: ", name)        
+            logger.debug("Bot saved to database under name: ", name)        
         return redirect(url_for("manager.index"))
     
     return render_template("makebot.html")
@@ -45,8 +46,6 @@ async def index():
     if request.method == "POST":
         bot_id = request.form.get("bot_id")
         bot_creds = session_instance.query(Bot).filter(Bot.bot_id == bot_id).first()
-        
-        bot_functions = BotFunctions()  # Instantiate the BotFunctions class
         
         (
             map, 
