@@ -5,10 +5,13 @@
     <h2>Make a switch</h2>
 </header>
 <form method="POST" class="skt-form">
-    <label for="name">Name</label>
-    <input class="skt-input" type="text" name="switch_name">
-    <label for="port">Switch id</label>
-    <input class="skt-input" type="text" name="switch_id">
+    {{ form.hidden_tag() }}
+    <label for="switch_name">Switch Name</label>
+    {{ form.switch_name(class="skt-input") }}
+    
+    <label for="switch_key">Switch Key</label>
+    {{ form.switch_key(class="skt-input") }}
+    
     <input class="skt-button skt-button--primary" type="submit" value="Commit change">
 </form>
 {% endblock %}

@@ -1,7 +1,8 @@
 if __name__ == '__main__':
     import logging
-    from .config.logger_config import configure_logger
-    # Configure loggers - This must run before SQLAlchemy is initialized
+    from .config.logger_config import configure_logger 
+
+    # Configure loggers
     configure_logger(
         [
             "Sokkatto.manager",
@@ -15,5 +16,6 @@ if __name__ == '__main__':
 
     logger: logging.Logger = logging.getLogger("Sokkatto")
     logger.info("Logger ready")
+
     from . import app
     app.run(debug=False)

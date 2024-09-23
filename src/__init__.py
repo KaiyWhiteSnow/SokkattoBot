@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-from .web.auth import auth
-from .web.manager import manager
+from .routes.auth import auth
+from .routes.manager import manager
 from .config import logger_config
 
 app = Flask(__name__)
@@ -11,4 +11,4 @@ app.register_blueprint(manager)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template('main/index.html')

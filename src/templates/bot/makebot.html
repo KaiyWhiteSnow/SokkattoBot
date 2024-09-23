@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="form-header">
+    <i class="fa-solid fa-robot"></i>
+    <h2>Make a bot</h2>
+</header>
+<form method="POST" class="skt-form">
+    {{ form.hidden_tag() }}
+    
+    <label for="name">Bot Name</label>
+    {{ form.name(class="skt-input") }}
+    
+    <label for="token">Token</label>
+    {{ form.token(class="skt-input") }}
+    
+    <label for="steam_id">Steam ID</label>
+    {{ form.steam_id(class="skt-input") }}
+    
+    <label for="ip">IP Address</label>
+    {{ form.ip(class="skt-input") }}
+    
+    <label for="port">Port</label>
+    {{ form.port(class="skt-input") }}
+    
+    <input class="skt-button skt-button--primary" type="submit" value="Commit change">
+</form>
+{% endblock %}
