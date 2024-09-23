@@ -14,6 +14,6 @@ if __name__ == '__main__':
     )
 
     logger: logging.Logger = logging.getLogger("Sokkatto")
-    logger.debug("Logger ready")
+    logger.info("Logger ready")
     from . import app
     app.run(debug=False)

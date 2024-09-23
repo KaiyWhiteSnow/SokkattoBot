@@ -26,11 +26,11 @@ async def register():
         existing_user = db.query(User).filter_by(username=username).first()
 
         if existing_user:
-            return render_template('register.html', message='Username already exists. Choose a different one.')
+            return render_template('register.html')
 
         # Check if passwords match
         if password != confirm_password:
-            return render_template('register.html', message='Passwords do not match. Please try again.')
+            return render_template('register.html')
 
         # Add user to the database
         new_user = User(username=username, password=password)
@@ -62,4 +62,4 @@ def login():
 def logout():
     # Remove the username from the session if it's present
     session.pop('username', None)
-    return redirect(url_for("auth.login"), message="You were logged out")
+    return redirect(url_for("authorization.login"))

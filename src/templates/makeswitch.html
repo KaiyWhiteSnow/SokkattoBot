@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<header class="form-header">
+    <i class="fa-solid fa-robot"></i>
+    <h2>Make a switch</h2>
+</header>
+<form method="POST" class="skt-form">
+    <label for="name">Name</label>
+    <input class="skt-input" type="text" name="switch_name">
+    <label for="port">Switch id</label>
+    <input class="skt-input" type="text" name="switch_id">
+    <input class="skt-button skt-button--primary" type="submit" value="Commit change">
+</form>
+{% endblock %}

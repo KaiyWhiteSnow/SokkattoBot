@@ -53,7 +53,7 @@ def configure_logger(loggers: List[str] = None): # type: ignore
         loggers = []
     for logger_name in loggers:
         logger = logging.getLogger(logger_name)
-        logger.setLevel(logging.INFO)
+        logger.setLevel(logging.DEBUG)
 
         logger.addHandler(file_handler)
         logger.addHandler(console_handler)
